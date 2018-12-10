@@ -24,7 +24,7 @@ If you haven't used esptool before, Adafruit has a great article here https://le
 
 You should now be able to see the micropython prompt when you use a terminal tool such as putty.
 
-
+<img src="/resources/putty.png" width="300">
 
 
 
