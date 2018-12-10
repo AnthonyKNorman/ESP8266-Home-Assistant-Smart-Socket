@@ -22,6 +22,9 @@ Change esp8266-20180511-v1.9.4.bin to the name of the image you downloaded
 
 If you haven't used esptool before, Adafruit has a great article here https://learn.adafruit.com/building-and-running-micropython-on-the-esp8266/flash-firmware
 
+You should now be able to see the micropython prompt when you use a terminal tool such as putty.
+
+
 
 
 
