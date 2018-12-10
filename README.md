@@ -14,10 +14,18 @@ So, dismantle the case as per the instructions in the link above.
 Thanks to the work of Theo Arends, you don't need to unsolder the ESP8266 board.
 
 Connect your USB seral board as per Theo's instructions, but don't flash the Sonoff software. Instead, download the Micropyton image from http://micropython.org/download#esp8266 and flash it to the board using:
-'''
-esptool.py --port COM3 write_flash -fs 1MB -fm dout 0x0 esp8266-20180511-v1.9.4.bin
-'''
-change COM3 to 
+`esptool.py --port COM3 write_flash -fs 1MB -fm dout 0x0 esp8266-20180511-v1.9.4.bin`
+
+Change COM3 to suit your serial port
+
+Change esp8266-20180511-v1.9.4.bin to the name of the image you downloaded
+
+If you haven't used esptool before, Adafruit has a great article here https://learn.adafruit.com/building-and-running-micropython-on-the-esp8266/flash-firmware
+
+
+
+
+
 
 
 
