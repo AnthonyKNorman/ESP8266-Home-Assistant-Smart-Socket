@@ -4,10 +4,10 @@ This Micropython project is to Hack a Hyleton313 cheap WiFi smart socket
 The first thing to read is this write up https://github.com/arendst/Sonoff-Tasmota/wiki/Hyleton-313-Smart-Plug
 
 <img src="/resources/IMG_0265.JPG" width="300">
+<img src="/resources/IMG_0264.JPG" width="300">
 
 Once you get it open you can see the blue processor board next to the relay. This is an ESP8266 variant, so I decided we could re-flash this plug with micropython
 
-<img src="/resources/IMG_0264.JPG" width="300">
 
 There is a blue led and a red led that shine through the little pin hole on the front. Oth of these are directly controlled from GPIO pins. There is also a neat little push button switch that also goes to a GPIO pin. The relay is controlled by yet another GPIO, but when you are testing and powering the board from the usb serial this doesn't work. Probably because there is some sort of transistor driver on the board.
 So, dismantle the case as per the instructions in the link above.
