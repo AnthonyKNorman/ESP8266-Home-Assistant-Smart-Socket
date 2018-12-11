@@ -26,7 +26,9 @@ You should now be able to see the micropython prompt when you use a terminal too
 
 <img src="/resources/putty.png" width="400">
 
+Th enext step is to enble WebREPL. Once again, Adafruit has a great tutorial on how to do this. https://learn.adafruit.com/micropython-basics-esp8266-webrepl/access-webrepl
 
+Once you have enabled WebREPL you can run scripts and upload files from your browser.
 
 <img src="/resources/webrepl.png" width="400">
 
