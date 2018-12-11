@@ -34,7 +34,10 @@ Once you have enabled WebREPL you can run scripts and upload files from your bro
 
 Now you can de-solder the wires for your USB Serial connector and re-assemble the Socket.
 
-* The Files *
+##The Files
+timer.py - a class to implement a flashing led. You simple pass the timer an LED and it flashes until you run deinit
+
+wificonf.py - I wanted this to be as easy as possible to chnage and move, so, at first boot you connect to the SSID presented by the ESP8266 and 
 
 
 
