@@ -41,5 +41,17 @@ wificonf.py - I wanted this to be as easy as possible to change and move, so, at
 
 <img src="/resources/webpage.png" width="400">
 
-Carefully enter your wifi SSID and password then click submit. Up to this point the blue LED will be flashing. Once you connect
+Carefully enter your wifi SSID and password then click submit. Up to this point the blue LED will be flashing. Once you enter your credentials, and the socket connects to your wifi, the led will go out.
+
+The socket will now be available for use by Home Assistant,or any other system that uses MQTT,
+
+Here is a snippet from my config.yaml file
+```
+  - platform: mqtt_json
+    name: "SOCKET1"
+    state_topic: "home/socket1/status"
+    command_topic: "home/socket1/set"
+    
+```
+
 
