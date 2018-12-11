@@ -28,6 +28,7 @@ You should now be able to see the micropython prompt when you use a terminal too
 
 
 
+<img src="/resources/webrepl.png" width="400">
 
 
 
