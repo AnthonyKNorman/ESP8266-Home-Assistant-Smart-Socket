@@ -34,6 +34,8 @@ Once you have enabled WebREPL you can run scripts and upload files from your bro
 
 Now you can de-solder the wires for your USB Serial connector and re-assemble the Socket.
 
+* The Files *
+
 
 
 
