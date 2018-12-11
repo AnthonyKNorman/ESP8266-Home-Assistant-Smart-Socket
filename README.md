@@ -40,5 +40,7 @@ timer.py - a class to implement a flashing led. You simple pass the timer an LED
 wificonf.py - I wanted this to be as easy as possible to chnage and move, so, at first boot you connect to the SSID presented by the ESP8266 and 
 
 
+<img src="/resources/webpage.png" width="400">
+
 
 
