@@ -37,10 +37,9 @@ Now you can de-solder the wires for your USB Serial connector and re-assemble th
 ##The Files
 timer.py - a class to implement a flashing led. You simple pass the timer an LED and it flashes until you run deinit
 
-wificonf.py - I wanted this to be as easy as possible to chnage and move, so, at first boot you connect to the SSID presented by the ESP8266 and 
-
+wificonf.py - I wanted this to be as easy as possible to change and move, so, at first boot you connect to the SSID presented by the ESP8266 and point a browser to the ESP8266 default IP address http://192.168.4.1. The default ESSID in the core is "ESPSocket1". You will need to chnage that if you are going to use more than one socket. You will be presented with the page below.
 
 <img src="/resources/webpage.png" width="400">
 
-
+Carefully enter your wifi SSID and password then click submit. Up to this point the blue LED will be flashing. Once you connect
 
