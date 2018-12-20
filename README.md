@@ -34,14 +34,14 @@ Once you have enabled WebREPL you can run scripts and upload files from your bro
 
 Now you can de-solder the wires for your USB Serial connector and re-assemble the Socket.
 
-##The Files
+##The Files##
 timer.py - a class to implement a flashing led. You simple pass the timer an LED and it flashes until you run deinit
 
-wificonf.py - I wanted this to be as easy as possible to change and move, so, at first boot you connect to the SSID presented by the ESP8266 and point a browser to the ESP8266 default IP address http://192.168.4.1. The default ESSID in the core is "ESPSocket1". You will need to chnage that if you are going to use more than one socket. You will be presented with the page below.
+wificonf.py - I wanted this to be as easy as possible to change and move, so, at first boot you connect to the SSID presented by the ESP8266 and point a browser to the ESP8266 default IP address http://192.168.4.1. The ESSID will be the default of the ESP8266. You change this in the web page presented below.
 
 <img src="/resources/webpage.png" width="400">
 
-Carefully enter your wifi SSID and password then click submit. Up to this point the blue LED will be flashing. Once you enter your credentials, and the socket connects to your wifi, the led will go out.
+Carefully enter your MQTT address, unique name, wifi SSID and password then click submit. Up to this point the blue LED will be flashing. Once you enter your credentials, and the socket connects to your wifi, the led will go out.
 
 The socket will now be available for use by Home Assistant,or any other system that uses MQTT,
 
@@ -53,5 +53,5 @@ Here is a snippet from my config.yaml file
     command_topic: "home/socket1/set"
     
 ```
-
+where socket1 is the unique name entered via the web page.
 
