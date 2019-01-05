@@ -40,7 +40,8 @@ class wificonf(object):
         sta_if = network.WLAN(network.STA_IF)
         # if not sta_if.isconnected():
         print('connecting to network...')
-        sta_if.active(True)
+        sta_if.active(False)                    # Set inactive...
+        sta_if.active(True)                     # ...and then inactive to ensure reconfig
         sta_if.connect(self.c['ssid'], self.c['pwd'])
         count = 0
         while not sta_if.isconnected():
@@ -91,8 +92,6 @@ class wificonf(object):
         
         html = head + body
         return head + body
-
-
 
     def get_params(self):
         self.blue_flash = timer.led_toggle(self.blue_led)      # start the blue light flashing
