@@ -49,8 +49,8 @@ class wificonf(object):
                 break
             count += 1
             if count > 20:
+                self.red_flash.deinit()                             # stop the red light flashing
                 return False
-                self.red_flash.deinit()                             # stop the blue light flashing
 
             utime.sleep(1)
         print('\nnetwork config:', sta_if.ifconfig())
