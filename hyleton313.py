@@ -19,7 +19,8 @@ light:
 """
 from umqtt.simple import MQTTClient
 from machine import Pin, reset
-import utime, ujson, os, wificonf
+from utime import sleep, ticks_ms, ticks_diff
+import ujson, os, wificonf
 
 # set topic basestring
 # e.g. set to b'home' gives topics of
@@ -73,15 +74,35 @@ relay       = Pin(15, Pin.OUT)                  # relay
 
 w = wificonf.wificonf(cFile = conf_file)        # initialises the config file if it doesn't exist
 
+start_ticks = 0                                 # used as the button press timer
+button_flag = False                             # true if the button has been pressed
+
+# handler for button interrupt
+def callback(p):
+    global start_ticks, button_flag
+    print('pin change', p, p.value())
+    
+    # button up event
+    if (p.value()):
+        time_pressed = ticks_diff(ticks_ms(), start_ticks)
+        print (time_pressed)
+        if time_pressed > 5000:
+            button_flag = True
+    # button down event        
+    else:
+        start_ticks = ticks_ms()
+
+# set up the interrupt action
+button.irq(trigger=Pin.IRQ_FALLING, handler=callback)
+
 while not w.wifi():                             # start the wifi
     # if the button is pressed continuously for more tha 5 seconds
     # then go into set up mode
-    now = utime.ticks_ms()
-    while button.value() == 0:                  
-        if utime.ticks_diff(utime.ticks_ms(), now) > 5000:
-            w.get_params()
+    if button_flag:
+        button_flag = False
+        w.get_params()
     print('*',end='')
-    utime.sleep(.5)
+    sleep(.5)
 
 print (w.c)
 
@@ -108,21 +129,22 @@ while not mqtt:
 c.subscribe(command_topic)                      # subscribe to command topic    
 
 state = "OFF"                                   # socket status
-relay.off()                                     # set state as off
-red_led.on()
-blue_led.off()
+relay.off()                                     # set relay off
+red_led.on()                                    # set red led off   
+blue_led.off()                                  # set blue led on
 
 send_status()                                   # update home assistant with light on / off, rgb and brightness
 
 while True:
-    # non-blocking wait for message
-    c.check_msg()                                # endless loop waiting for messages
-    now = utime.ticks_ms()
-    while button.value() == 0:
-        if utime.ticks_diff(utime.ticks_ms(), now) > 5000:
-            os.remove(conf_file)
-            reset()
-    utime.sleep(.5)
+    c.check_msg()                               # non-blocking wait for message
+    if button_flag:                             # if the button has been pressed
+        button_flag = False                     # clear the button press
+        f = open(w.cFile, 'w')                  # clear the password to force reconfig   
+        w.c["pwd"] =  ""
+        f.write(ujson.dumps(w.c))
+        f.close()
+        reset()                                 # hard reset
+    sleep(.5)
     print('#',end='')
 c.disconnect()                                  # if we come out of the loop for any reason then disconnect
 reset()
