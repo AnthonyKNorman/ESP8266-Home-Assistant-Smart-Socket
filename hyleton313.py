@@ -70,15 +70,19 @@ blue_led    = Pin(2, Pin.OUT)                   # bue led on front
 onboard_led = Pin(4, Pin.OUT)                   # blue led on ESP8266 board(not visible)
 relay       = Pin(15, Pin.OUT)                  # relay
 
-state = "OFF"                                   # socket status
-relay.off()                                     # set state as off
-red_led.on()
-blue_led.off()
 
 w = wificonf.wificonf(cFile = conf_file)        # initialises the config file if it doesn't exist
+
 while not w.wifi():                             # start the wifi
-    w.get_params()                              # enable the web interface if the wifi doesn't connect
-    
+    # if the button is pressed continuously for more tha 5 seconds
+    # then go into set up mode
+    now = utime.ticks_ms()
+    while button.value() == 0:                  
+        if utime.ticks_diff(utime.ticks_ms(), now) > 5000:
+            w.get_params()
+    print('*',end='')
+    utime.sleep(.5)
+
 print (w.c)
 
 state_topic   = topic_base + b'/'+ w.c['name'].encode() + b'/status'
@@ -103,10 +107,15 @@ while not mqtt:
         
 c.subscribe(command_topic)                      # subscribe to command topic    
 
+state = "OFF"                                   # socket status
+relay.off()                                     # set state as off
+red_led.on()
+blue_led.off()
+
 send_status()                                   # update home assistant with light on / off, rgb and brightness
 
 while True:
-    # blocking wait for message
+    # non-blocking wait for message
     c.check_msg()                                # endless loop waiting for messages
     now = utime.ticks_ms()
     while button.value() == 0:
@@ -114,6 +123,7 @@ while True:
             os.remove(conf_file)
             reset()
     utime.sleep(.5)
+    print('#',end='')
 c.disconnect()                                  # if we come out of the loop for any reason then disconnect
 reset()
 
