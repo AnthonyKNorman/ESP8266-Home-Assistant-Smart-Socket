@@ -5,7 +5,7 @@ The first thing to read is this write up https://github.com/arendst/Sonoff-Tasmo
 
 I have also cracked open the common circular version.
 The wiring connection are as below
-<img src="/resources/Base_view.png" width="300">
+<img src="/resources/Base_view.png" width="500">
 
 
 <img src="/resources/IMG_0265.JPG" width="300">
