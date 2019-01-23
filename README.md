@@ -3,6 +3,11 @@ This Micropython project is to Hack a Hyleton313 cheap WiFi smart socket
 
 The first thing to read is this write up https://github.com/arendst/Sonoff-Tasmota/wiki/Hyleton-313-Smart-Plug
 
+I have also cracked open the common circular version.
+The wiring connection are as below
+<img src="/resources/Base_view.png" width="300">
+
+
 <img src="/resources/IMG_0265.JPG" width="300">
 <img src="/resources/IMG_0264.JPG" width="300">
 
